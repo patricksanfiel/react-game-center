@@ -1,6 +1,6 @@
 #hangman-canvas{
-    width: 750px;
-    height: 500px;
+    width: 500px;
+    height: 250px;
     border: 1px solid black;
     margin: 2em auto;
     display: block;
@@ -19,5 +19,40 @@ input{
 }
 
 .letter-space{
-    border-bottom: 2px solid black;
+    padding-right: 1em;
+    font-size: 3em;
+}
+
+#display-guess-word{
+    margin: 3em auto;
+    text-align: center
+}
+
+#set-word-header{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.hangman-input-button{
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#set-word-done{
+    margin-right: 1em;
+}
+
+.input-buttons-div{
+    text-align: center;
+}
+#incorrect-guesses-display, #remaining-guesses-display{
+    display: inline-block;
+}
+#incorrect-guesses-display{
+    width: 75%;
+}
+#remaining-guesses-display{
+    width: 25%;
 }

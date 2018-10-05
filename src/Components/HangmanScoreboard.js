@@ -3,8 +3,8 @@ import React from 'react';
 const HangmanScoreboard = (props) => {
     return(
         <div id="hangman-scoreboard">
-            <h3>Incorrect guesses: {props.playerIncorrectGuesses}</h3>
-            <h3>Remaining Guesses: {props.remainingGuesses}</h3>
+            <span id="incorrect-guesses-display">Incorrect guesses: {props.playerIncorrectGuesses}</span>
+            <span id="remaining-guesses-display">Remaining Guesses: {props.remainingGuesses}</span>
         </div>
     )
 }

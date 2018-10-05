@@ -3,18 +3,19 @@ import HangmanSetWordInput from './HangmanSetWordInput';
 import HangmanGuessLetterInput from './HangmanGuessLetterInput';
 
 const HangmanInput = (props) => {
-        if (!props.hideInput){
+        if (!props.toggleInput){
             return(
                 <HangmanSetWordInput 
-                    changed={ event => props.guessWordChanged(event) }
-                    clicked={ event => props.clicked(event) }
+                    changed={ event => props.setWordChanged(event) }
+                    clicked={ event => props.setWordClicked(event) }
+                    quitButtonClicked={ event => props.quitButtonClicked(event) }
                 />
             )
         } else {
             return(
                 <HangmanGuessLetterInput 
                     changed={ event => props.guessLetterChanged(event) }
-                    clicked={ event => props.clicked(event) }
+                    quitButtonClicked={ event => props.quitButtonClicked(event) }
                 />
             )
         }
