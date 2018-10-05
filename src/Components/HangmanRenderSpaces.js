@@ -2,7 +2,7 @@ import React from 'react';
 import HangmanSpace from './HangmanSpace';
 
 const HangmanRenderSpaces = (props) => {
-    if (props.wordToGuess.length) {
+    if (props.wordToGuess.length>1) {
         let wordToGuess = props.wordToGuess;
         let playerCorrectGuesses = props.playerCorrectGuesses;
         let id = 0;
@@ -11,7 +11,7 @@ const HangmanRenderSpaces = (props) => {
           id++;
           //If the element at the current position matches a letter in the playerCorrectGuesses
           //array, the element's value will be rendered in a HangmanSpace component in this position.
-          if (playerCorrectGuesses.indexOf(letter) > -1) {
+          if (playerCorrectGuesses.indexOf(letter) > -1 || letter === " ") {
             return <HangmanSpace spaceValue={letter} key={id} />;
           }
           // If the element at the current position does not match any letter in the
@@ -26,7 +26,7 @@ const HangmanRenderSpaces = (props) => {
       }
       // If a word to be guessed has not yet been entered by a user
       else {
-        return <p>No word entered yet</p>;
+        return <p>Please enter a word or phrase consisting of two or more letters</p>;
       }
 }
 

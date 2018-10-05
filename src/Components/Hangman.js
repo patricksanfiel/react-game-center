@@ -44,11 +44,12 @@ class Hangman extends Component {
           </div>
           <HangmanInput
             setWordChanged={event => this.setGuessWord(event)}
-            setWordClicked={event => {
+            setDoneButtonClicked={event => {
               this.toggleInput(event);
+              this.checkWordLength(event)
               this.setState({ showCanvas: true });
             }}
-            quitButtonClicked={event => {
+            guessQuitButtonClicked={event => {
               this.setState({ gameOn: false, showCanvas: false });
             }}
             toggleInput={this.state.toggleInput}
@@ -74,9 +75,30 @@ class Hangman extends Component {
   // When the user clicks the Done button under the input field, the field is hidden
   // To prevent accidental updating
   setGuessWord(event) {
-    let wordToGuess = event.target.value;
-    wordToGuess = wordToGuess.split("");
-    this.setState({ wordToGuess: wordToGuess });
+    let wordToGuess = event.target.value.toString().toLowerCase().split("");
+    let alphabet = "abcdefghijklmnopqrstuvwxyz ".split("")
+    let playerCorrectGuesses = this.state.playerCorrectGuesses;
+    for(let i = 0; i<wordToGuess.length; i++){
+        if(!alphabet.includes(wordToGuess[i])){
+            alert("Please enter letters only")
+            event.target.value=null
+            return wordToGuess = null
+        } 
+    }
+    let spacebar = wordToGuess.includes(" ")
+    if(playerCorrectGuesses.length===0 && spacebar){
+        console.log("space")
+        playerCorrectGuesses.push(" ")
+    }
+    console.log(playerCorrectGuesses)
+    if(wordToGuess&&wordToGuess.length>=1){
+        console.log("if")
+    this.setState({ wordToGuess: wordToGuess, playerCorrectGuesses: playerCorrectGuesses });
+    }
+    else{
+        console.log("else")
+        alert("Please only enter letters")
+    }
   }
 
   // Method used to set the hideInput state property
@@ -89,10 +111,19 @@ class Hangman extends Component {
     }
   }
 
+  checkWordLength(){
+      let wordToGuess = this.state.wordToGuess;
+      if(wordToGuess.length===1){
+          this.setState({toggleInput: false})
+      }
+  }
+
   // Everytime a user enters a letter into the Guess A Letter input, this method is triggered
   guessLetter(event) {
     // Store user input to a variable
-    let letter = event.target.value;
+    let letter = event.target.value.toString().toLowerCase();
+    let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
+    let isALetter = alphabet.includes(letter);
     // Store state values that will be involved in checking against the user input
     let wordToGuess = this.state.wordToGuess;
     let playerCorrectGuesses = [...this.state.playerCorrectGuesses];
@@ -102,7 +133,12 @@ class Hangman extends Component {
     // indexOf returns an element's index in an array or a -1 if the element does not exist in the array
     // If the current guess is not included in the array of the player's past correct guesses and
     // is included in the array of the word to be guessed, add the current guess to the array of correct guesses
-    if (
+    if(!isALetter){
+        alert("Please only enter letters")
+    }else if(letter === " "){
+        playerCorrectGuesses.push(letter);
+    }
+    else if (
       playerCorrectGuesses.indexOf(letter) === -1 &&
       wordToGuess.indexOf(letter) > -1
     ) {
@@ -137,7 +173,7 @@ class Hangman extends Component {
     let playerCorrectGuesses = this.state.playerCorrectGuesses;
     if (
       wordToGuess.length === playerCorrectGuesses.length &&
-      wordToGuess.length >= 1 &&
+      wordToGuess.length > 1 &&
       gameWon === false
     ) {
       gameWon = true;

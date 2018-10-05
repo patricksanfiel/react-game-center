@@ -7,15 +7,15 @@ const HangmanInput = (props) => {
             return(
                 <HangmanSetWordInput 
                     changed={ event => props.setWordChanged(event) }
-                    clicked={ event => props.setWordClicked(event) }
-                    quitButtonClicked={ event => props.quitButtonClicked(event) }
+                    setDoneButtonClicked={ event => props.setDoneButtonClicked(event) }
+                    setQuitButtonClicked={ event => props.quitButtonClicked(event) }
                 />
             )
         } else {
             return(
                 <HangmanGuessLetterInput 
                     changed={ event => props.guessLetterChanged(event) }
-                    quitButtonClicked={ event => props.quitButtonClicked(event) }
+                    guessQuitButtonClicked={ event => props.guessQuitButtonClicked(event) }
                 />
             )
         }
