@@ -5,7 +5,6 @@ import HangmanRenderSpaces from "./HangmanRenderSpaces";
 import HangmanInput from "./HangmanInput";
 import HangmanScoreboard from "./HangmanScoreboard";
 import axios from 'axios';
-import keys from '../config/dev'
 
 class Hangman extends Component {
     state = {
@@ -66,10 +65,10 @@ class Hangman extends Component {
             return(
                 <div className="hangman-overlay-div">
                     <div id="you-win-header" className="row">
-                        <h1 className="col-12" id="you-win-display">You win</h1>
+                        <h1 className="col-12 white-text" id="you-win-display">You win</h1>
                     </div>
                     <div id="you-win-buttons" className="row">
-                        <button onClick={event => this.restartGame(event)} className="text col-3 play-again-button" id="you-win-play-again">Play Again</button>
+                        <button onClick={event => this.restartGame(event)} className="text col-3 play-again-button black-border yellow-box-shadow" id="you-win-play-again">Play Again</button>
                     </div>
                 </div>
             )
@@ -80,10 +79,10 @@ class Hangman extends Component {
                         <h1 id="game-over-text" className="col-12 text">Game Over</h1>
                     </div>
                     <div className="row">
-                        <span id="game-over-word-reveal" className="col-12">The word was <strong>{this.state.wordToGuess}</strong></span>
+                        <span id="game-over-word-reveal" className="col-12 white-text">The word was <strong>{this.state.wordToGuess}</strong></span>
                     </div>
                     <div id="game-over-button-div" className="row">
-                        <button onClick={event => this.restartGame(event)} id="game-over-button" className="col-3">
+                        <button onClick={event => this.restartGame(event)} id="game-over-button" className="col-3 text black-border">
                             Play Again?
                         </button>
                     </div>
@@ -92,8 +91,7 @@ class Hangman extends Component {
         }
     }
 
-
-    // Method used to set the hideInput state property
+// Toggles between the HangmanSetWordInput and the HangmanGuessLetterInput components
     toggleInput(event) {
         let toggleInput = !this.state.toggleInput;
         if (this.state.toggleInput) {
@@ -103,9 +101,10 @@ class Hangman extends Component {
         }
     }
 
-    // Pulling guess words from API
+    
+// Pulling guess words from API
 
-    // Pulling from https://dog.ceo/api/breeds/list/all
+// "Random Dog Breed" button
     getDogBreed(){
         this.toggleInput()
         axios.get("https://dog.ceo/api/breeds/list/all")
@@ -127,7 +126,7 @@ class Hangman extends Component {
         })
     }
 
-    // Pulling from https://restcountries.eu/rest/v2/all
+// "Random Country" button
     getCountryName(){
         this.toggleInput()
         axios.get("https://restcountries.eu/rest/v2/all")
@@ -150,7 +149,7 @@ class Hangman extends Component {
         })
     }
 
-    // Pulling from https://pokeapi.co/api/v2/pokemon-species/
+// "Random Pokemon" button
     getPokemon(){
         this.toggleInput()
         axios.get("https://pokeapi.co/api/v2/pokemon-species/")
@@ -178,21 +177,19 @@ class Hangman extends Component {
 
 
 
-    // As the user types in the input element, wordToGuess is updated.
-    // When the user clicks the Done button under the input field, the field is hidden
-    // To prevent accidental updating
+// Runs every time a user enters a character into the HangmanGuessLetterInput input element
     setGuessWord(event) {
         let wordToGuess = event.target.value.toString().toLowerCase().split("");
         console.log(event.target.value[wordToGuess.length - 1])
         let alphabet = "abcdefghijklmnopqrstuvwxyz ".split("")
         let playerCorrectGuesses = this.state.playerCorrectGuesses;
         for (let i = 0; i < wordToGuess.length; i++) {
-            // if (!alphabet.includes(wordToGuess[i])) {
-            //     alert("Please enter letters only")
-            //     wordToGuess.pop()
-            //     event.target.value = wordToGuess.join("");
-            //     return wordToGuess = null
-            // }
+            if (!alphabet.includes(wordToGuess[i])) {
+                alert("Please enter letters only")
+                wordToGuess.pop()
+                event.target.value = wordToGuess.join("");
+                return wordToGuess = null
+            }
         }
         let spacebar = wordToGuess.includes(" ")
         let leftParentheses = wordToGuess.includes("(")
@@ -200,6 +197,7 @@ class Hangman extends Component {
         let hyphen = wordToGuess.includes("-")
         let period = wordToGuess.includes(".")
         let comma = wordToGuess.includes(",")
+        let apostrophe = wordToGuess.includes("'")
         if (playerCorrectGuesses.length === 0 && spacebar) {
             playerCorrectGuesses.push(" ")
         }
@@ -218,6 +216,9 @@ class Hangman extends Component {
         if(comma){
             playerCorrectGuesses.push(",")
         }
+        if(apostrophe){
+            playerCorrectGuesses.push("'")
+        }
         if (wordToGuess && wordToGuess.length >= 1) {
             this.setState({ wordToGuess: wordToGuess, playerCorrectGuesses: playerCorrectGuesses });
         }
@@ -226,7 +227,7 @@ class Hangman extends Component {
         }
     }
 
-
+// Runs when a user enters a word into the HangmanSetWordInput input element. Minimum length of 2
     checkWordLength() {
         let wordToGuess = this.state.wordToGuess;
         if (wordToGuess.length === 1) {
@@ -234,19 +235,15 @@ class Hangman extends Component {
         }
     }
 
-    // Everytime a user enters a letter into the Guess A Letter input, this method is triggered
+// Everytime a user enters a letter into the HangmanGuessLetterInput input, this method is triggered
     guessLetter(event) {
-        // Store user input to a variable
         let letter = event.target.value.toString().toLowerCase();
         let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
         let isALetter = alphabet.includes(letter);
-        // Store state values that will be involved in checking against the user input
         let wordToGuess = this.state.wordToGuess;
         let playerCorrectGuesses = [...this.state.playerCorrectGuesses];
         let playerIncorrectGuesses = [...this.state.playerIncorrectGuesses];
-        // remainingGuesses will be used to trigger a game over if it ever reaches zero
         let remainingGuesses = this.state.remainingGuesses;
-        // indexOf returns an element's index in an array or a -1 if the element does not exist in the array
         // If the current guess is not included in the array of the player's past correct guesses and
         // is included in the array of the word to be guessed, add the current guess to the array of correct guesses
         if (!isALetter) {
@@ -282,6 +279,7 @@ class Hangman extends Component {
         event.target.value = null;
     }
 
+// Runs every time the Hangman component updates
     checkProgress() {
         let remainingGuesses = this.state.remainingGuesses;
         let gameWon = this.state.gameWon;
@@ -301,6 +299,7 @@ class Hangman extends Component {
         }
     }
 
+// Resets all state properties to their default values. Triggered by the play again button in the playGame method
     restartGame(event) {
         let resetArray = [];
         this.setState({

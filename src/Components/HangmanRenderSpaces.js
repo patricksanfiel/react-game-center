@@ -6,7 +6,6 @@ const HangmanRenderSpaces = (props) => {
         let wordToGuess = props.wordToGuess;
         let playerCorrectGuesses = props.playerCorrectGuesses;
         let id = 0;
-        // Iterate through a variable set equal to the word to be guessed
         return wordToGuess.map(letter => {
           id++;
           //If the element at the current position matches a letter in the playerCorrectGuesses
@@ -24,9 +23,10 @@ const HangmanRenderSpaces = (props) => {
           }
         });
       }
-      // If a word to be guessed has not yet been entered by a user
+      // If a word to be guessed has not yet been entered by a user, they will be prompted to
+      // Choose or enter one
       else {
-        return <p id="choose-category-enter-word-prompt">Please choose a category or enter a word or phrase consisting of two or more letters</p>;
+        return <p id="render-spaces-enter-word-prompt" className="white-text">Please choose a category or enter a word or phrase consisting of two or more letters</p>;
       }
 }
 

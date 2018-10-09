@@ -8,7 +8,8 @@ class HangmanCanvas extends Component {
     componentDidUpdate() {
         this.updateCanvas();
     }
-
+// Every time a letter is added to "Incorrect Guesses", the "Remaining Guesses Counter is decreased by one"
+// Using the "remaining guesses" value and checking it against the if statements, each body part is revealed 
     updateCanvas() {
         let myCanvas = document.getElementById("hangman-canvas");
 

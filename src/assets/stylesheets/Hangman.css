@@ -1,34 +1,11 @@
+/* General Styles */
 * {
     box-sizing: border-box;
 }
 
-/* For mobile phones: */
 [class*="col-"] {
     width: 100%;
 }
-
-#hangman-canvas{
-    width: 250px;
-    height: 125px;
-    border: 1px solid #d8a200;
-    margin: 1em auto;
-    display: block;
-} 
-
-#you-win-header{
-    text-align: center;
-}
-#display-guess-word{
-    /* position: relative; */
-    margin-top: -1em;
-    overflow: scroll;
-}
-
-button:hover{
-    cursor: pointer;
-    background-image: linear-gradient(to bottom right, #2b2b2b, #353535);
-}
-
 
 [class*="col-"] {
     float: left;
@@ -41,81 +18,61 @@ button:hover{
     display: table;
 }
 
+button:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to bottom right, #2b2b2b, #353535);
+}
+
 body{
     background-color: #d8a200;
 }
+
 .category-button, .select-word-subheader, #enter-word-div, .hangman-input-button, #game-over-text, #game-over-button, #you-win-play-again, #incorrect-guesses-display, #remaining-guesses-display, #guess-div, #guess-letter-prompt{
      background-image: linear-gradient(to bottom right,#000000, #070707, #1c1c1c, #2b2b2b, #353535);
 }
 
-#display-guess-word{
-    overflow: scroll;
-}
-
-
-@media only screen and (min-width: 768px) {
-    #hangman-canvas{
-        width: 500px;
-        height: 250px;
-    }
-}
-#header{
-    text-align: center;
-}
-
-
-#game-over-text{
-    text-shadow: 0px 0px 5px #d8a200;
-    text-align: center;
-}
-
-#game-over-button{
-    padding: 1em;
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px #d8a200;
-    text-shadow: 0px 0px 5px #d8a200;
+.text{
     color: #d8a200;
-    margin-left: 37.5%;
+    text-shadow: 0px 0px 5px #d8a200;
 }
 
-#game-over-word-reveal{
-    padding: 1em;
+.white-text{
     color: white;
-    text-align: center;
-    margin-top: 5em;
-    margin-bottom: 10em;
 }
 
-#game-over-header{
-    margin-top: -1.4em;
+.black-border{
+    border: 1px solid black;
 }
 
-#set-word-input, #guess-letter-input{
-    padding: 1em;
-    margin-top: 2em;
-    margin-bottom: 5em;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: 0;
-    background-color: #d8a200;
+.yellow-box-shadow{
     box-shadow: 0px 0px 15px #d8a200;
-    color: white;
 }
 
-.letter-space{
-    padding-right: 1em;
-    font-size: 3em;
-}
+
+
+
+/* Canvas Element */
+#hangman-canvas{
+    width: 250px;
+    height: 125px;
+    border: 1px solid #d8a200;
+    margin: 1em auto;
+    display: block;
+} 
+
+
+
+
+/* -------------------- Hangman Component playGame method --------------------------- */
 
 #display-guess-word{
+    width: 100%;
     margin: 3em auto;
     text-align: center
 }
 
-
-#you-win-header{
-    color: white;
+    /* You Win */
+#you-win-display{
     text-align: center;
     margin-top: 5em;
 }
@@ -125,34 +82,100 @@ body{
     margin-top: 5em;
     margin-bottom: 10em;
     padding: 1em;
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px #d8a200;
-    text-shadow: 0px 0px 5px #d8a200;
+}
+
+    /* Game Over */
+#game-over-text{
+    text-align: center;
+}
+
+#game-over-button{
+    padding: 1em;
+    margin-left: 37.5%;
+}
+
+#game-over-word-reveal{
+    padding: 1em;
+    text-align: center;
+    margin-top: 5em;
+    margin-bottom: 10em;
+}
+
+#game-over-header{
+    margin-top: -1.4em;
 }
 
 
-#incorrect-guesses-display, #remaining-guesses-display{
-    display: inline-block;
-}
-#incorrect-guesses-display{
-    width: 50%;
-    font-size: 0.8em;
-}
-#remaining-guesses-display{
-    width: 50%;
-    font-size: 0.8em;
-}
 
 
-
-#choose-category-div, #enter-word-div{
-    padding: 0;
+/* ----------------------------------- HangmanInput component ----------------------- */
+#set-word-input, #guess-letter-input{
+    padding: 1em;
+    margin-top: 2em;
+    margin-bottom: 5em;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 0;
+    background-color: #d8a200;
 }
 
 #choose-category-buttons, #enter-word-body, #guess-div-input{
     height: 13em;
 }
 
+.select-word-subheader, #guess-letter-prompt{
+    display: block;
+    text-align: center;
+    padding: 15px;
+}
+
+
+
+
+/* ------------------------------ HangmanSpace component --------------------------- */
+.letter-space{
+    padding-right: 1em;
+    font-size: 3em;
+}
+
+
+
+
+/* ---------------------------- HangmanScoreboard Component ------------------------- */
+
+#remaining-guesses-display, #incorrect-guesses-display{
+    width: 50%;
+    font-size: 0.8em;
+    display: inline-block;
+}
+
+
+
+
+/* ---------------------------- HangmanSetWordInput Component ----------------------- */
+#choose-category-div, #enter-word-div{
+    padding: 0;
+}
+
+    /* Choose a Category */
+.category-button{
+    width: 33.3%;
+    height: 100%;
+    margin-left: 0.025%;
+}
+
+    /* Enter a Word */
+.set-word-button{
+    width: 35%;
+    margin-left: 35%;
+    padding: 1em;
+}
+
+
+
+
+/* ------------------------ HangmanGuessLetterInput Component ----------------------- */
 #guess-letter-input{
     margin-top: 5em;
     padding: 1em;
@@ -162,65 +185,14 @@ body{
     width: 30%;
     margin-left: 35%;
     padding: 1em;
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px #d8a200;
-    text-shadow: 0px 0px 5px #d8a200;
-
 }
 
-.category-button{
-    border: 1px solid black;
-    box-shadow: 0px 0px 15px #d8a200;
-    width: 33.3%;
-    height: 100%;
-    margin-left: 0.025%;
-    text-shadow: 0px 0px 5px #d8a200;
-}
 
-.select-word-subheader, #guess-letter-prompt{
-    display: block;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0px 0px 15px #d8a200;
-    border: 1px solid black;
-    text-shadow: 0px 0px 5px #d8a200;
-}
 
-.set-word-button{
-    width: 35%;
-    margin-left: 35%;
-    box-shadow: 0px 0px 15px #d8a200;
-    text-shadow: 0px 0px 5px #d8a200;
-    border: 1px solid black;
-    padding: 1em;
-}
 
-.text{
-    color: #d8a200;
-    text-shadow: 0px 0px 5px #d8a200;
-}
-
-#incorrect-guesses-display, #remaining-guesses-display, #guess-div, #guess-letter-prompt{
-    box-shadow: 0px 0px 15px #d8a200;
-    border: 1px solid black;
-}
-#choose-category-enter-word-prompt, .letter-space{
-    color: white;
-}
-
-.hangman-overlay-div{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-#display-guess-word{
-    width: 100%;
-}
-
+/* -------------------------------- Desktop Media Query ----------------------------- */
 @media only screen and (min-width: 768px) {
-    /* For desktop: */
+    
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
     .col-3 {width: 25%;}
@@ -234,6 +206,12 @@ body{
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
+    
+    #hangman-canvas{
+        width: 500px;
+        height: 250px;
+    }
+    
     #select-word-div{
         position: fixed;
         bottom: 0;
@@ -243,10 +221,14 @@ body{
 }
 
 
+
+
+/* ------------------------- Mobile Device Media Query ------------------------------ */
 @media only screen and (max-width: 750px){
     #remaining-guesses-display, #incorrect-guesses-display{
         height: 5em;
     }
+
     #game-over-button{
         margin-left: 0%;
         position: fixed;
@@ -255,6 +237,7 @@ body{
         right: 0;
         padding: 2em;
     }
+
     #you-win-play-again{
         position: fixed;
         left:0;
@@ -264,6 +247,10 @@ body{
     }
 }
 
+
+
+
+/* -------------------- Mobile phones, excluding iPhone 4 -------------------------- */
 @media only screen and (min-width: 330px) and (max-width: 768px){
     #guess-div{
         position: fixed;
