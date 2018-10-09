@@ -26,7 +26,7 @@ const HangmanRenderSpaces = (props) => {
       }
       // If a word to be guessed has not yet been entered by a user
       else {
-        return <p>Please enter a word or phrase consisting of two or more letters</p>;
+        return <p id="choose-category-enter-word-prompt">Please choose a category or enter a word or phrase consisting of two or more letters</p>;
       }
 }
 

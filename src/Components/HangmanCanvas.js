@@ -14,7 +14,7 @@ class HangmanCanvas extends Component {
 
         if (myCanvas) {
             let context = myCanvas.getContext("2d");
-            context.fillStyle = "black";
+            context.fillStyle = "#d8a200";
             context.fillRect(0, 0, 500, 250);
             // Gallows Floor
             context.strokeStyle = "white";

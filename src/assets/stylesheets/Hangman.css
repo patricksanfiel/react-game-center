@@ -1,21 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
 #hangman-canvas{
-    width: 500px;
-    height: 250px;
-    border: 1px solid black;
-    margin: 2em auto;
+    width: 250px;
+    height: 125px;
+    border: 1px solid #d8a200;
+    margin: 1em auto;
     display: block;
+} 
+
+#you-win-header{
+    text-align: center;
+}
+#display-guess-word{
+    /* position: relative; */
+    margin-top: -1em;
+    overflow: scroll;
+}
+
+button:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to bottom right, #2b2b2b, #353535);
+}
+
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+body{
+    background-color: #d8a200;
+}
+.category-button, .select-word-subheader, #enter-word-div, .hangman-input-button, #game-over-text, #game-over-button, #you-win-play-again, #incorrect-guesses-display, #remaining-guesses-display, #guess-div, #guess-letter-prompt{
+     background-image: linear-gradient(to bottom right,#000000, #070707, #1c1c1c, #2b2b2b, #353535);
+}
+
+#display-guess-word{
+    overflow: scroll;
+}
+
+
+@media only screen and (min-width: 768px) {
+    #hangman-canvas{
+        width: 500px;
+        height: 250px;
+    }
 }
 #header{
     text-align: center;
 }
 
-input{
+
+#game-over-text{
+    text-shadow: 0px 0px 5px #d8a200;
+    text-align: center;
+}
+
+#game-over-button{
+    padding: 1em;
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px #d8a200;
+    text-shadow: 0px 0px 5px #d8a200;
+    color: #d8a200;
+    margin-left: 37.5%;
+}
+
+#game-over-word-reveal{
+    padding: 1em;
+    color: white;
+    text-align: center;
+    margin-top: 5em;
+    margin-bottom: 10em;
+}
+
+#game-over-header{
+    margin-top: -1.4em;
+}
+
+#set-word-input, #guess-letter-input{
+    padding: 1em;
     margin-top: 2em;
     margin-bottom: 5em;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
-    border: 2px solid black;
+    border: 0;
+    background-color: #d8a200;
+    box-shadow: 0px 0px 15px #d8a200;
+    color: white;
 }
 
 .letter-space{
@@ -28,31 +113,162 @@ input{
     text-align: center
 }
 
-#set-word-header{
-    display: block;
-    font-weight: bold;
+
+#you-win-header{
+    color: white;
     text-align: center;
-    font-size: 1.5em;
+    margin-top: 5em;
 }
 
-.hangman-input-button{
+#you-win-play-again{
+    margin-left: 37.5%;
+    margin-top: 5em;
+    margin-bottom: 10em;
     padding: 1em;
-    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px #d8a200;
+    text-shadow: 0px 0px 5px #d8a200;
 }
 
-#set-word-done{
-    margin-right: 1em;
-}
 
-.input-buttons-div{
-    text-align: center;
-}
 #incorrect-guesses-display, #remaining-guesses-display{
     display: inline-block;
 }
 #incorrect-guesses-display{
-    width: 75%;
+    width: 50%;
+    font-size: 0.8em;
 }
 #remaining-guesses-display{
-    width: 25%;
+    width: 50%;
+    font-size: 0.8em;
+}
+
+
+
+#choose-category-div, #enter-word-div{
+    padding: 0;
+}
+
+#choose-category-buttons, #enter-word-body, #guess-div-input{
+    height: 13em;
+}
+
+#guess-letter-input{
+    margin-top: 5em;
+    padding: 1em;
+}
+
+#guess-letter-quit{
+    width: 30%;
+    margin-left: 35%;
+    padding: 1em;
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px #d8a200;
+    text-shadow: 0px 0px 5px #d8a200;
+
+}
+
+.category-button{
+    border: 1px solid black;
+    box-shadow: 0px 0px 15px #d8a200;
+    width: 33.3%;
+    height: 100%;
+    margin-left: 0.025%;
+    text-shadow: 0px 0px 5px #d8a200;
+}
+
+.select-word-subheader, #guess-letter-prompt{
+    display: block;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0px 0px 15px #d8a200;
+    border: 1px solid black;
+    text-shadow: 0px 0px 5px #d8a200;
+}
+
+.set-word-button{
+    width: 35%;
+    margin-left: 35%;
+    box-shadow: 0px 0px 15px #d8a200;
+    text-shadow: 0px 0px 5px #d8a200;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.text{
+    color: #d8a200;
+    text-shadow: 0px 0px 5px #d8a200;
+}
+
+#incorrect-guesses-display, #remaining-guesses-display, #guess-div, #guess-letter-prompt{
+    box-shadow: 0px 0px 15px #d8a200;
+    border: 1px solid black;
+}
+#choose-category-enter-word-prompt, .letter-space{
+    color: white;
+}
+
+.hangman-overlay-div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+#display-guess-word{
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+
+    #select-word-div{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+
+@media only screen and (max-width: 750px){
+    #remaining-guesses-display, #incorrect-guesses-display{
+        height: 5em;
+    }
+    #game-over-button{
+        margin-left: 0%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2em;
+    }
+    #you-win-play-again{
+        position: fixed;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:0;
+    }
+}
+
+@media only screen and (min-width: 330px) and (max-width: 768px){
+    #guess-div{
+        position: fixed;
+        bottom: 0;
+        left:0;
+        right:0;
+    }
 }

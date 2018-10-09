@@ -9,6 +9,9 @@ const HangmanInput = (props) => {
                     changed={ event => props.setWordChanged(event) }
                     setDoneButtonClicked={ event => props.setDoneButtonClicked(event) }
                     setQuitButtonClicked={ event => props.quitButtonClicked(event) }
+                    getDogs={event => props.getDogs(event)}
+                    getCountry={event => props.getCountry(event)}
+                    getPokemon={event => props.getPokemon(event)}
                 />
             )
         } else {
