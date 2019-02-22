@@ -211,34 +211,12 @@ class Hangman extends Component {
   }
 
   fillSpecialChars(wordToGuess, playerCorrectGuesses){
-    let spacebar = wordToGuess.includes(" ");
-    let leftParentheses = wordToGuess.includes("(");
-    let rightParentheses = wordToGuess.includes(")");
-    let hyphen = wordToGuess.includes("-");
-    let period = wordToGuess.includes(".");
-    let comma = wordToGuess.includes(",");
-    let apostrophe = wordToGuess.includes("'");
-    if (playerCorrectGuesses.length === 0 && spacebar) {
-      playerCorrectGuesses.push(" ");
-    }
-    if (leftParentheses) {
-      playerCorrectGuesses.push("(");
-    }
-    if (rightParentheses) {
-      playerCorrectGuesses.push(")");
-    }
-    if (hyphen) {
-      playerCorrectGuesses.push("-");
-    }
-    if (period) {
-      playerCorrectGuesses.push(".");
-    }
-    if (comma) {
-      playerCorrectGuesses.push(",");
-    }
-    if (apostrophe) {
-      playerCorrectGuesses.push("'");
-    }
+    let alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+    wordToGuess.forEach(letter => {
+      if(!alphabet.includes(letter)){
+        playerCorrectGuesses.push(letter)
+      }
+    })
   }
 
   // Runs when a user enters a word into the HangmanSetWordInput input element. Minimum length of 2
