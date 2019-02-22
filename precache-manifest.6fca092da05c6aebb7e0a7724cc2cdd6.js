@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/react-hangman/static/js/runtime~main.59e19427.js"
   },
   {
-    "revision": "47370577cf66ce4d76fd",
-    "url": "/react-hangman/static/js/main.47370577.chunk.js"
+    "revision": "964d8ac54df028efb012",
+    "url": "/react-hangman/static/js/main.964d8ac5.chunk.js"
   },
   {
     "revision": "5cb7871d3228c9b26253",
     "url": "/react-hangman/static/js/2.5cb7871d.chunk.js"
   },
   {
-    "revision": "47370577cf66ce4d76fd",
-    "url": "/react-hangman/static/css/main.4c3cafe3.chunk.css"
+    "revision": "964d8ac54df028efb012",
+    "url": "/react-hangman/static/css/main.a12c21ad.chunk.css"
   },
   {
-    "revision": "f65df140b261973d03550ce0740cc0e1",
+    "revision": "15010d37a1c48ed3c8f76552270168e0",
     "url": "/react-hangman/index.html"
   }
 ];
