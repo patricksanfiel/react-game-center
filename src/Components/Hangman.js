@@ -333,7 +333,7 @@ class Hangman extends Component {
   }
 
   render() {
-    return <div>{this.playGame()}</div>;
+    return <div className="container">{this.playGame()}</div>;
   }
 }
 
