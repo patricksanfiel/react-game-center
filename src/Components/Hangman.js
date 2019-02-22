@@ -132,10 +132,7 @@ class Hangman extends Component {
         let randomIndex = Math.floor(Math.random() * range);
         let wordToGuess = dogArray[randomIndex].split("");
         let playerCorrectGuesses = this.state.playerCorrectGuesses;
-        let spacebar = wordToGuess.includes(" ");
-        if (playerCorrectGuesses.length === 0 && spacebar) {
-          playerCorrectGuesses.push(" ");
-        }
+        this.fillSpecialChars(wordToGuess, playerCorrectGuesses)
         this.setState({
           wordToGuess: wordToGuess
         });
@@ -155,10 +152,7 @@ class Hangman extends Component {
         let wordToGuess = countryArray[randomIndex];
         let playerCorrectGuesses = this.state.playerCorrectGuesses;
         wordToGuess = wordToGuess.name.toLowerCase().split("");
-        let spacebar = wordToGuess.includes(" ");
-        if (playerCorrectGuesses.length === 0 && spacebar) {
-          playerCorrectGuesses.push(" ");
-        }
+        this.fillSpecialChars(wordToGuess, playerCorrectGuesses)
         this.setState({
           wordToGuess: wordToGuess,
           playerCorrectGuesses: playerCorrectGuesses
@@ -180,10 +174,7 @@ class Hangman extends Component {
         let wordToGuess = pokemonArray[randomIndex];
         let playerCorrectGuesses = this.state.playerCorrectGuesses;
         wordToGuess = wordToGuess.name.toLowerCase().split("");
-        let spacebar = wordToGuess.includes(" ");
-        if (playerCorrectGuesses.length === 0 && spacebar) {
-          playerCorrectGuesses.push(" ");
-        }
+        this.fillSpecialChars(wordToGuess, playerCorrectGuesses)
         this.setState({
           wordToGuess: wordToGuess,
           playerCorrectGuesses: playerCorrectGuesses
@@ -208,6 +199,18 @@ class Hangman extends Component {
         return (wordToGuess = null);
       }
     }
+    this.fillSpecialChars(wordToGuess, playerCorrectGuesses)
+    if (wordToGuess && wordToGuess.length >= 1) {
+      this.setState({
+        wordToGuess: wordToGuess,
+        playerCorrectGuesses: playerCorrectGuesses
+      });
+    } else {
+      alert("Please only enter letters");
+    }
+  }
+
+  fillSpecialChars(wordToGuess, playerCorrectGuesses){
     let spacebar = wordToGuess.includes(" ");
     let leftParentheses = wordToGuess.includes("(");
     let rightParentheses = wordToGuess.includes(")");
@@ -235,14 +238,6 @@ class Hangman extends Component {
     }
     if (apostrophe) {
       playerCorrectGuesses.push("'");
-    }
-    if (wordToGuess && wordToGuess.length >= 1) {
-      this.setState({
-        wordToGuess: wordToGuess,
-        playerCorrectGuesses: playerCorrectGuesses
-      });
-    } else {
-      alert("Please only enter letters");
     }
   }
 
