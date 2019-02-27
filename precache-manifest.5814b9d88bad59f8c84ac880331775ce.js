@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/react-hangman/static/css/main.dbf8d77e.chunk.css"
   },
   {
-    "revision": "60cadc982ed3054a3dcc47e21d0ff1f7",
+    "revision": "b0a1ca73d7025cf60d322834445a2517",
     "url": "/react-hangman/index.html"
   }
 ];
